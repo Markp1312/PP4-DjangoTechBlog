@@ -12,7 +12,17 @@
                     <div class="col-md-4">
                         <div class="card mb-4">
                             <div class="card-body">
-                                
+                                <div class="image-container">
+                                    {% if "placeholder" in post.featured_image.url %}
+                                    <img class="card-img-top"
+                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaKbwEgRJvedUEqKH9Ft-9D0V5QNY9wRCatriRyVtwOC12pfxLbBox4yseA0WWqI9j3Ec&usqp=CAU">
+                                    {% else %}
+                                    <img class="card-img-top" src=" {{ post.featured_image.url }}">
+                                    {% endif %}
+                                    <div class="image-flash">
+                                        <p class="author">Author: {{ post.author }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
