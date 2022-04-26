@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Post
 from .forms import CommentForm
+from django.http import HttpResponseRedirect
 
 class PostList(generic.ListView):
     model = Post
@@ -29,7 +30,7 @@ class PostDetail(View):
                 "comment_form": CommentForm()
             },
         )
-        
+
     def post(self, request, slug, *args, **kwargs):
 
         queryset = Post.objects.filter(status=1)
@@ -60,3 +61,13 @@ class PostDetail(View):
                 "liked": liked
             },
         )
+
+class PostLike(View):
+
+    def post(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id=request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
