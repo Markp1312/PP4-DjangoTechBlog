@@ -67,6 +67,12 @@
         </div>
         <div class="col-md-4 card mb-4  mt-3 ">
             <div class="card-body">
+                {% if commented %}
+                <div class="alert alert-sccess" role="alert">
+                    Your Comment is pending approval.
+                </div>
+                {% else %}
+
                 {% if user.is_authenticated %}
 
                 <h3>Leave a comment</h3>
@@ -76,7 +82,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-signup btn-lg">Submit</button>
                 </form>
-
+                {% endif %}
                 {% endif %}
             </div>
         </div>
