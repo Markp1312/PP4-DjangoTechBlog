@@ -87,7 +87,13 @@
             <i class="fab fa-youtube-square ms-3"></i></p>
     </footer>
 <script>
-    
+    setTimeout(function() {
+        let messages = document.getElementById("msg");
+        let alert = new bootstrap.alert(messages);
+        alert.close();
+    }, 2500);
+
+
 </script>
 </body>
 
